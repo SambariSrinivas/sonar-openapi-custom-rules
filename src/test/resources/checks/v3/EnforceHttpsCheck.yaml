@@ -1,0 +1,17 @@
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+servers:
+  - url: http://my.api.com
+paths:
+  /pets/foo/{id}:
+    get:
+      responses:
+        '200':
+          description: some operation
+      parameters:
+        - name: parameter
+          in: query
+        - name: good
+          in: query

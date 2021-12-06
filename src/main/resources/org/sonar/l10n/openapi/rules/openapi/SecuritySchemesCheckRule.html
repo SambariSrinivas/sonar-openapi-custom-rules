@@ -1,0 +1,33 @@
+<p>This rule detects the Security Schemes are defined properly or not.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+ No Security Schemes are defined in components section
+ </pre>
+<h2>Compliant Solution</h2>
+<pre>
+ components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    OpenID:
+      type: openIdConnect
+      openIdConnectUrl: https://example.com/.well-known/openid-configuration
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://example.com/oauth/authorize
+          tokenUrl: https://example.com/oauth/token
+          scopes:
+            read: Grants read access
+            write: Grants write access
+            admin: Grants access to admin operations
+ </pre>

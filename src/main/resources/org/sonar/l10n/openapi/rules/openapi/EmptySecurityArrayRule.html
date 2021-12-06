@@ -1,0 +1,66 @@
+<p>This rule detects if the the Security  are defined properly or not.</p>
+<h2>Noncompliant Code Example</h2>
+<pre>
+ The security field of API contract does not list any security schemes to be applied. Instead, it just contains an empty array.
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+# ...
+servers:
+  - url: https://my.api.server.com/
+    description: API server
+# ...
+paths:
+  /billing_info:
+    get:
+      summary: Gets the account billing info
+      security: []   # Use OAuth with a different scope
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Not authenticated
+        '403':
+          description: Access token does not have the required scope
+security: []
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+# ...
+servers:
+  - url: https://my.api.server.com/
+    description: API server
+# ...
+paths:
+  /billing_info:
+    get:
+      summary: Gets the account billing info
+      security:
+        - OAuth2: [admin]   # Use OAuth with a different scope
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Not authenticated
+        '403':
+          description: Access token does not have the required scope
+security:
+  - OAuth2:
+      - readOnly
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            readOnly: read objects in your account
+          authorizationUrl: https://example.com/oauth/authorize
+          tokenUrl: https://example.com/oauth/token
+
+</pre>

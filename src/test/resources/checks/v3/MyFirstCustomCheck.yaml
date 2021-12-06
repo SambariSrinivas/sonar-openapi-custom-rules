@@ -1,0 +1,33 @@
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /pets/foo/{id}:
+    get:
+      responses:
+        '200':
+          description: some operation
+      parameters:
+        - name: foo-parameter
+          in: query
+        - name: good
+          in: query
+  /animals: {}
+security: []
+components:
+  schemas:
+    ArrayOfUsers:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          name:
+            type: string
+      example:
+        - id: 10
+          name: Jessica Smith
+        - id: 20
+          name: Ron Stewart

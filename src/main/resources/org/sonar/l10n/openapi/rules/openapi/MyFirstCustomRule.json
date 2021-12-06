@@ -1,0 +1,14 @@
+{
+  "title": "Title of MyFirstCustomCheck",
+  "type": "VULNERABILITY",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "pitfall",
+    "must"
+  ],
+  "defaultSeverity": "Major"
+}
